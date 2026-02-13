@@ -48,7 +48,7 @@ export default function About() {
     <section
       id="about"
       ref={sectionRef}
-      className="relative py-24 lg:py-32 bg-white overflow-hidden"
+      className="relative py-16 sm:py-20 lg:py-28 bg-white overflow-hidden"
     >
       {/* Subtle diagonal stripe pattern */}
       <div
@@ -65,7 +65,7 @@ export default function About() {
       />
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 items-start">
           {/* Image Column - Offset Top */}
           <motion.div
             ref={imageRef}
@@ -110,13 +110,13 @@ export default function About() {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: visible ? 1 : 0, y: visible ? 0 : 50 }}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-4xl lg:text-5xl font-bold mb-8 leading-tight"
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 sm:mb-8 leading-tight"
             >
               A Journey from Nangi to the World
             </motion.h2>
 
             {/* Body Text */}
-            <div className="space-y-6 text-black/70 leading-relaxed">
+            <div className="space-y-5 sm:space-y-6 text-black/70 leading-relaxed">
               <motion.p
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: visible ? 1 : 0, y: visible ? 0 : 30 }}

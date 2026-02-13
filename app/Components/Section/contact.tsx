@@ -83,7 +83,7 @@ export default function Contact() {
     <section
       id="contact"
       ref={sectionRef}
-      className="relative py-24 lg:py-32 bg-gradient-to-br from-white to-gray-50 overflow-hidden"
+      className="relative py-16 sm:py-20 lg:py-28 bg-gradient-to-br from-white to-gray-50 overflow-hidden"
     >
       {/* Diagonal background element */}
       <div
@@ -93,8 +93,8 @@ export default function Contact() {
         }}
       />
 
-      <div className="relative max-w-12xl mx-auto px-6 lg:px-8 flex-row  items-center text-cent">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 justify-items-center">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-10 sm:gap-14 lg:gap-20 justify-items-center">
           {/* Left Column - Contact Info */}
           <motion.div className="w-full max-w-2xl lg:col-span-2"
             initial={{ opacity: 0, x: -60 }}
@@ -104,7 +104,7 @@ export default function Contact() {
             <span className="inline-block text-sm font-medium text-black/50 uppercase tracking-widest mb-4">
               GET IN TOUCH
             </span>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">
               Join the Mission
             </h2>
             <p className="text-black/60 leading-relaxed mb-10">
@@ -113,7 +113,7 @@ export default function Contact() {
             </p>
 
             {/* Contact Details */}
-            <div className="space-y-6 mb-10">
+            <div className="space-y-5 sm:space-y-6 mb-8 sm:mb-10">
               {contactInfo.map((item, index) => {
                 const Icon = item.icon;
                 return (
@@ -125,12 +125,12 @@ export default function Contact() {
                     transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
                     className="flex items-start gap-4 group"
                   >
-                    <div className="w-12 h-12 flex items-center justify-center rounded-full bg-black text-white flex-shrink-0 transition-transform duration-300 group-hover:scale-110">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-black text-white flex-shrink-0 transition-transform duration-300 group-hover:scale-110">
                       <Icon className="w-5 h-5" />
                     </div>
                     <div>
                       <span className="text-sm text-black/50">{item.label}</span>
-                      <p className="font-medium group-hover:underline underline-offset-4">
+                      <p className="font-medium break-words group-hover:underline underline-offset-4">
                         {item.value}
                       </p>
                     </div>
@@ -142,7 +142,7 @@ export default function Contact() {
             {/* Social Links */}
             <div>
               <span className="text-sm text-black/50 mb-4 block">Follow Along</span>
-              <div className="flex gap-3">
+              <div className="flex flex-wrap gap-3">
                 {socialLinks.map((social, index) => {
                   const Icon = social.icon;
                   return (

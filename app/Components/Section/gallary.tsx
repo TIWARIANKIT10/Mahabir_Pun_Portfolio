@@ -47,9 +47,6 @@ export default function Gallery() {
   const [visible, setVisible] = useState(false);
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
-  const column1Ref = useRef<HTMLDivElement>(null);
-  const column2Ref = useRef<HTMLDivElement>(null);
-  const column3Ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -69,51 +66,22 @@ export default function Gallery() {
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current) return;
-
-      const rect = sectionRef.current.getBoundingClientRect();
-      const sectionHeight = sectionRef.current.offsetHeight;
-      const progress = Math.max(0, Math.min(1, -rect.top / sectionHeight + 0.3));
-
-      if (column1Ref.current) {
-        column1Ref.current.style.transform = `translateY(${-progress * 40}px)`;
-      }
-      if (column2Ref.current) {
-        column2Ref.current.style.transform = `translateY(${-progress * 80}px)`;
-      }
-      if (column3Ref.current) {
-        column3Ref.current.style.transform = `translateY(${-progress * 120}px)`;
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const column1Images = galleryImages.filter((img) => img.column === 1);
-  const column2Images = galleryImages.filter((img) => img.column === 2);
-  const column3Images = galleryImages.filter((img) => img.column === 3);
-
   const ImageCard = ({
     image,
-    index,
-    columnDelay,
+    index
   }: {
     image: (typeof galleryImages)[0];
     index: number;
-    columnDelay: number;
   }) => (
     <motion.div
       initial={{ opacity: 0, y: 80 }}
       animate={{ opacity: visible ? 1 : 0, y: visible ? 0 : 80 }}
       transition={{
         duration: 0.8,
-        delay: columnDelay + index * 0.1,
+        delay: 0.2 + index * 0.08,
         ease: [0.16, 1, 0.3, 1],
       }}
-      className="group relative overflow-hidden rounded-xl cursor-pointer"
+      className="group relative overflow-hidden rounded-lg sm:rounded-xl cursor-pointer"
       onClick={() => setLightboxImage(image.src)}
     >
       <div className="aspect-[4/3] overflow-hidden">
@@ -139,11 +107,11 @@ export default function Gallery() {
       <section
         id="gallery"
         ref={sectionRef}
-        className="relative py-24 lg:py-32 bg-white overflow-hidden"
+        className="relative py-16 sm:py-20 lg:py-28 bg-white overflow-hidden"
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           {/* Section Header */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-10 sm:mb-14">
             <motion.span
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: visible ? 1 : 0, y: visible ? 0 : 20 }}
@@ -156,7 +124,7 @@ export default function Gallery() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: visible ? 1 : 0, y: visible ? 0 : 30 }}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-4xl lg:text-5xl font-bold mb-4"
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4"
             >
               Moments of Change
             </motion.h2>
@@ -171,43 +139,10 @@ export default function Gallery() {
             </motion.p>
           </div>
 
-          {/* Masonry Grid */}
-          <div className="grid md:grid-cols-3 gap-6">
-            {/* Column 1 - Slow parallax */}
-            <div ref={column1Ref} className="space-y-6 gpu-accelerate">
-              {column1Images.map((image, index) => (
-                <ImageCard
-                  key={image.src}
-                  image={image}
-                  index={index}
-                  columnDelay={0.3}
-                />
-              ))}
-            </div>
-
-            {/* Column 2 - Medium parallax, offset */}
-            <div ref={column2Ref} className="space-y-6 md:mt-10 gpu-accelerate">
-              {column2Images.map((image, index) => (
-                <ImageCard
-                  key={image.src}
-                  image={image}
-                  index={index}
-                  columnDelay={0.45}
-                />
-              ))}
-            </div>
-
-            {/* Column 3 - Fast parallax, more offset */}
-            <div ref={column3Ref} className="space-y-6 md:mt-20 gpu-accelerate">
-              {column3Images.map((image, index) => (
-                <ImageCard
-                  key={image.src}
-                  image={image}
-                  index={index}
-                  columnDelay={0.6}
-                />
-              ))}
-            </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 lg:gap-6">
+            {galleryImages.map((image, index) => (
+              <ImageCard key={image.src} image={image} index={index} />
+            ))}
           </div>
         </div>
       </section>

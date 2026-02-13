@@ -57,11 +57,11 @@ export default function Impact() {
     <section
       id="impact"
       ref={sectionRef}
-      className="relative py-24 lg:py-32 bg-white overflow-hidden"
+      className="relative py-16 sm:py-20 lg:py-28 bg-white overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 sm:mb-14">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: visible ? 1 : 0, y: visible ? 0 : 20 }}
@@ -74,14 +74,14 @@ export default function Impact() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: visible ? 1 : 0, y: visible ? 0 : 30 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-4xl lg:text-5xl font-bold"
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold"
           >
             Connecting Communities
           </motion.h2>
         </div>
 
         {/* Impact Cards Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
           {impactCards.map((card, index) => {
             const Icon = card.icon;
             return (
@@ -94,21 +94,21 @@ export default function Impact() {
                   delay: 0.2 + index * 0.1,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className="group relative p-8 border border-black/10 rounded-2xl bg-white hover:border-black/30 transition-all duration-500 card-lift"
+                className="group relative p-4 sm:p-6 lg:p-8 border border-black/10 rounded-xl sm:rounded-2xl bg-white hover:border-black/30 transition-all duration-500 card-lift"
                 style={{ perspective: "1000px" }}
               >
                 {/* Icon */}
-                <div className="w-14 h-14 flex items-center justify-center rounded-xl bg-black text-white mb-6 transition-all duration-400 group-hover:rotate-[10deg] group-hover:scale-110">
-                  <Icon className="w-7 h-7" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 flex items-center justify-center rounded-lg sm:rounded-xl bg-black text-white mb-4 sm:mb-5 lg:mb-6 transition-all duration-400 group-hover:rotate-[10deg] group-hover:scale-110">
+                  <Icon className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7" />
                 </div>
 
                 {/* Number */}
-                <div className="text-4xl lg:text-5xl font-bold mb-2">
+                <div className="text-2xl sm:text-3xl lg:text-5xl font-bold mb-2">
                   {card.number}
                 </div>
 
                 {/* Label */}
-                <h3 className="text-lg font-semibold mb-2">{card.label}</h3>
+                <h3 className="text-sm sm:text-base lg:text-lg font-semibold mb-2">{card.label}</h3>
 
                 {/* Description */}
                 <p className="text-black/60 text-sm leading-relaxed">
@@ -127,9 +127,9 @@ export default function Impact() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: visible ? 1 : 0, y: visible ? 0 : 30 }}
           transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-16 text-center max-w-3xl mx-auto"
+          className="mt-12 sm:mt-16 text-center max-w-3xl mx-auto"
         >
-          <blockquote className="text-2xl lg:text-3xl font-medium italic text-black/80 leading-relaxed">
+          <blockquote className="text-xl sm:text-2xl lg:text-3xl font-medium italic text-black/80 leading-relaxed">
             &ldquo;The only way to change Nepal is through innovation and
             education. We must create opportunities for our youth to stay and
             build our nation.&rdquo;
