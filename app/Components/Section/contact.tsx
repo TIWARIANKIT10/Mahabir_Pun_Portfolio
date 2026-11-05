@@ -2,13 +2,15 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, Twitter, Linkedin, Facebook, Youtube } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Twitter, Facebook, Globe } from "lucide-react";
 
+// Real profiles (verified against NIC's own channels).
+// The LinkedIn/YouTube placeholders that used to sit here
+// only fired "profile coming soon!" alerts.
 const socialLinks = [
-  { icon: Twitter, label: "Twitter", href: "#" },
-  { icon: Linkedin, label: "LinkedIn", href: "#" },
-  { icon: Facebook, label: "Facebook", href: "#" },
-  { icon: Youtube, label: "YouTube", href: "#" },
+  { icon: Twitter, label: "Twitter", href: "https://twitter.com/mahabirpun" },
+  { icon: Facebook, label: "Facebook", href: "https://www.facebook.com/mahabir.pun" },
+  { icon: Globe, label: "National Innovation Center", href: "https://www.nicnepal.org" },
 ];
 
 const contactInfo = [
@@ -28,7 +30,7 @@ const contactInfo = [
     icon: MapPin,
     label: "Address",
     value: "National Innovation Center, Kathmandu, Nepal",
-    href: "#",
+    href: "https://www.google.com/maps/search/?api=1&query=National+Innovation+Center+Kathmandu",
   },
 ];
 
@@ -63,11 +65,24 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // This site has no backend, and the old handler simply
+    // faked success (setSubmitted + a timer) — visitors
+    // believed the National Innovation Center had received
+    // a message that was never sent anywhere. The honest
+    // static-site pattern: compose the message in the
+    // visitor's own mail app, addressed to the Center.
+    const subject = encodeURIComponent(
+      formState.subject || `Website message from ${formState.name}`
+    );
+    const body = encodeURIComponent(
+      `${formState.message}\n\n— ${formState.name} (${formState.email})`
+    );
+    window.location.href = `mailto:info@nationalinnovationcenter.org?subject=${subject}&body=${body}`;
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);
       setFormState({ name: "", email: "", subject: "", message: "" });
-    }, 3000);
+    }, 4000);
   };
 
   const handleChange = (
@@ -149,10 +164,8 @@ export default function Contact() {
                     <motion.a
                       key={social.label}
                       href={social.href}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        alert(`${social.label} profile coming soon!`);
-                      }}
+                      target="_blank"
+                      rel="noreferrer"
                       initial={{ opacity: 0, scale: 0 }}
                       animate={{ opacity: visible ? 1 : 0, scale: visible ? 1 : 0 }}
                       transition={{
@@ -199,9 +212,10 @@ export default function Contact() {
                       />
                     </svg>
                   </div>
-                  <h3 className="text-2xl font-bold mb-2">Message Sent!</h3>
+                  <h3 className="text-2xl font-bold mb-2">Almost there — check your email app</h3>
                   <p className="text-black/60">
-                    Thank you for reaching out. We&apos;ll get back to you soon.
+                    Your message has been composed in your email app, addressed to the
+                    National Innovation Center. Just press Send there to deliver it.
                   </p>
                 </motion.div>
               ) : (

@@ -127,28 +127,7 @@ export default function Footer() {
             <p className="text-sm text-white/60">
               © {new Date().getFullYear()} Mahabir Pun. All rights reserved.
             </p>
-            <div className="flex gap-6">
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  alert("Privacy Policy coming soon!");
-                }}
-                className="text-sm text-white/60 hover:text-white transition-colors"
-              >
-                Privacy Policy
-              </a>
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  alert("Terms of Service coming soon!");
-                }}
-                className="text-sm text-white/60 hover:text-white transition-colors"
-              >
-                Terms of Service
-              </a>
-            </div>
+
           </motion.div>
         </div>
       </div>

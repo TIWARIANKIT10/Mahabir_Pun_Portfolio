@@ -81,11 +81,9 @@ export default function Articles() {
             </motion.h2>
           </div>
           <motion.a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              alert("Full articles page coming soon!");
-            }}
+            href="https://www.nicnepal.org"
+            target="_blank"
+            rel="noreferrer"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: visible ? 1 : 0, y: visible ? 0 : 20 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -112,11 +110,10 @@ export default function Articles() {
                 delay: 0.1 + index * 0.1,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="group cursor-pointer"
+              className="group"
               style={{
                 marginTop: index === 1 ? "40px" : index === 2 ? "80px" : "0",
               }}
-              onClick={() => alert(`Article: ${article.title}\n\nComing soon!`)}
             >
               {/* Image */}
               <div className="relative aspect-[4/3] overflow-hidden rounded-xl mb-6">
@@ -155,11 +152,6 @@ export default function Articles() {
                   {article.excerpt}
                 </p>
 
-                {/* Read more link */}
-                <div className="mt-4 flex items-center gap-2 text-sm font-medium">
-                  <span>Read More</span>
-                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-2" />
-                </div>
               </div>
             </motion.article>
           ))}

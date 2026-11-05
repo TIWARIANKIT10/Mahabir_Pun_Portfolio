@@ -198,7 +198,6 @@ export default function Hero() {
                 delay: 1.4,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              onClick={() => alert("Video coming soon!")}
               className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-black text-black font-medium rounded-full hover:bg-black hover:text-white transition-all duration-300 w-full sm:w-auto"
             >
               <Play className="w-4 h-4" />
